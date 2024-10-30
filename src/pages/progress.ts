@@ -4,23 +4,23 @@
 // Some test URLs
 
 // Plain
-// http://localhost:4321/progress.png?url=https://act.youngminds.org.uk/node/136
+// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/136
 
 // A different URL
-// http://localhost:4321/progress.png?url=https://act.youngminds.org.uk/node/116
+// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/116
 
 // With colours
-// http://localhost:4321/progress.png?url=https://act.youngminds.org.uk/node/136&bg=f8fafc&bar=FF5F00&bar_bg=CDCFD0&text_colour=191919
+// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/136&bg=f8fafc&bar=FF5F00&bar_bg=CDCFD0&text_colour=191919
 
 
 // Different font
-// http://localhost:4321/progress.png?url=https://act.youngminds.org.uk/node/136&font=merriweather
-// http://localhost:4321/progress.png?url=https://act.youngminds.org.uk/node/136&font=open-sans
+// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/136&font=merriweather
+// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/136&font=open-sans
 
 // Says supporters instead of default
 // Total%20is%20%7Btotal%7D.%20Needed%20is%20%7Bneeded%7D.%20Target%20is%20%7Btarget%7D.
 // Total is {total}. Needed is {needed}. Target is {target}.
-// http://localhost:4321/progress.png?url=https://act.youngminds.org.uk/node/116&text=Total%20is%20%7Btotal%7D.%20Needed%20is%20%7Bneeded%7D.%20Target%20is%20%7Btarget%7D.
+// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/116&text=Total%20is%20%7Btotal%7D.%20Needed%20is%20%7Bneeded%7D.%20Target%20is%20%7Btarget%7D.
 
 // URL params
 // url is for the action URL. Accepts an Impact Stack node URL such as https://action.earthcharity.org.uk/node/136. Does not accept https://action.earthcharity.org.uk/my-action-name or https://action.earthcharity.org.uk/node/136/polling (with /polling on the end)
@@ -43,6 +43,17 @@
 
 // weight is for the font weight. Only accepts normal at the moment. Default is normal.
 
+
+/**
+ <div style="text-align: center;">
+	<img class="mcnImage"
+		src="https:ist-stats-live-images.netlify.app/progress?url=https:act.youngminds.org.uk/node/136&font=lora" />
+</div>
+
+<div style="text-align: center; background-color: black;">
+	<img class="mcnImage" src="https:svgshare.com/i/1C48.svg" />
+</div>
+ */
 
 
 import satori, { type SatoriOptions } from "satori";
@@ -111,6 +122,11 @@ const fontStyleSchema = z.enum(allAvailableStyles)
 	.catch('normal')
 	.default('normal');
 
+
+// If a format query parameter is provided, it must be either png or svg. Default is svg.
+const formatSchema = z.enum(['png', 'svg'])
+	.catch('svg')
+	.default('svg');
 
 
 export const GET: APIRoute = async ({ url }) => {
@@ -248,37 +264,55 @@ style="display: flex; flex-direction: column; align-items: center; justify-conte
 
 		const svg = await satori(markup, satoriOptions);
 
-		const resvgOptions: ResvgRenderOptions = {
-			background: "transparent",
+		const format = formatSchema.parse(searchParams.get('format'));
 
-			// font: {
-			// 	fontFiles: ['./public/fonts/Raleway-Regular.ttf'], // Load custom fonts.
-			// 	loadSystemFonts: false, // Faster to disable loading system fonts.
-			// 	defaultFontFamily: 'RalewayRegular', // Set the default font family.
-			// },
-			imageRendering: 1, // 0: optimizeQuality, 1: optimizeSpeed,
-			textRendering: 2, // 0: optimizeSpeed, 1: optimizeLegibility, 2: geometricPrecision
-			shapeRendering: 2, // 0: optimizeSpeed, 1: crispEdges, 2: geometricPrecision
-			logLevel: 'error', // 'off' | 'error' | 'warn' | 'info' | 'debug' | 'trace'
-		};
+		if (format === 'svg') {
+			return new Response(svg, {
+				status: 200,
+				headers: {
+					"Content-Type": "image/svg+xml",
+					// Tell browsers to always check if their cached version is still fresh
+					'Cache-Control': 'public, max-age=0, must-revalidate',
+					// Netlify-specific caching instructions
+					// https://docs.netlify.com/platform/caching/#supported-cache-control-headers
+					'Netlify-CDN-Cache-Control': 'public, durable, s-maxage=3600, stale-while-revalidate=86400'
+				}
+			});
+		} else if (format === 'png') {
 
-		// Render PNG
-		const resvg = new Resvg(svg, resvgOptions);
-		const pngData = resvg.render();
-		const pngBuffer = pngData.asPng();
+			const resvgOptions: ResvgRenderOptions = {
+				background: "transparent",
 
-		// Return the image
-		return new Response(pngBuffer, {
-			status: 200,
-			headers: {
-				"Content-Type": "image/png",
-				// Tell browsers to always check if their cached version is still fresh
-				// 'Cache-Control': 'public, max-age=0, must-revalidate',
-				// Netlify-specific caching instructions
-				// https://docs.netlify.com/platform/caching/#supported-cache-control-headers
-				// 'Netlify-CDN-Cache-Control': 'public, durable, s-maxage=3600, stale-while-revalidate=86400'
-			},
-		});
+				// font: {
+				// 	fontFiles: ['./public/fonts/Raleway-Regular.ttf'], // Load custom fonts.
+				// 	loadSystemFonts: false, // Faster to disable loading system fonts.
+				// 	defaultFontFamily: 'RalewayRegular', // Set the default font family.
+				// },
+				imageRendering: 1, // 0: optimizeQuality, 1: optimizeSpeed,
+				textRendering: 2, // 0: optimizeSpeed, 1: optimizeLegibility, 2: geometricPrecision
+				shapeRendering: 2, // 0: optimizeSpeed, 1: crispEdges, 2: geometricPrecision
+				logLevel: 'error', // 'off' | 'error' | 'warn' | 'info' | 'debug' | 'trace'
+			};
+
+
+			// Render PNG
+			const resvg = new Resvg(svg, resvgOptions);
+			const pngData = resvg.render();
+			const pngBuffer = pngData.asPng();
+
+			// Return the image
+			return new Response(pngBuffer, {
+				status: 200,
+				headers: {
+					"Content-Type": "image/png",
+					// Tell browsers to always check if their cached version is still fresh
+					'Cache-Control': 'public, max-age=0, must-revalidate',
+					// Netlify-specific caching instructions
+					// https://docs.netlify.com/platform/caching/#supported-cache-control-headers
+					'Netlify-CDN-Cache-Control': 'public, durable, s-maxage=3600, stale-while-revalidate=86400'
+				},
+			});
+		}
 
 	} catch (error) {
 		console.error("Error generating image:", error);

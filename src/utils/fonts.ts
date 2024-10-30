@@ -5,7 +5,7 @@ export const fonts = {
         normal: '/fonts/crimson-text/crimson-text-latin-400-normal.ttf'
     },
     'ibm-plex-sans': {
-        normal: '/fonts/ibm-plex-sans/ibm-plex-sans-latin-ext-400-normal.ttf'
+        normal: '/fonts/ibm-plex-sans/ibm-plex-sans-latin-400-normal.ttf'
     },
     'inter': {
         normal: '/fonts/inter/inter-latin-400-normal.ttf'
@@ -26,7 +26,7 @@ export const fonts = {
         normal: '/fonts/pt-serif/pt-serif-latin-400-normal.ttf'
     },
     'roboto': {
-        normal: '/fonts/roboto/roboto-latin-ext-400-normal.ttf'
+        normal: '/fonts/roboto/roboto-latin-400-normal.ttf'
     },
     'source-sans-pro': {
         normal: '/fonts/source-sans-pro/source-sans-pro-latin-400-normal.ttf'

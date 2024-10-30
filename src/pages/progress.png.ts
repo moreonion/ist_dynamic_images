@@ -42,24 +42,23 @@ const hexColor = z.string().regex(/^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, {
 	message: "Hex code must be a valid hex colour code without the #",
 });
 
-const colorSchema = z.string().transform((value, _ctx) => {
-	if (!value) return null;
-	return hexColor.safeParse(value).success ? '#' + value : value;
-});
+const colorSchema = z.string().nullish()
+	.transform((value) => {
+		if (!value) return null;
+		return hexColor.safeParse(value).success ? '#' + value : value;
+	});
 
 const colorsSchema = z.object({
-	bg: colorSchema.default('transparent'),
-	barBg: colorSchema.default('#000000'),
-	bar: colorSchema.default('#826BA3'),
-	text: colorSchema.default('#000000')
+	bg: colorSchema.transform(val => val ?? 'transparent'),
+	barBg: colorSchema.transform(val => val ?? '#000000'),
+	bar: colorSchema.transform(val => val ?? '#826BA3'),
+	text: colorSchema.transform(val => val ?? '#000000')
 });
 
 
 export const GET: APIRoute = async ({ url }) => {
 
 	const searchParams = url.searchParams;
-
-	// TODO: Add validation for hex codes from the URL
 
 	// url is for the action URL. Accepts an Impact Stack node URL such as https://action.earthcharity.org.uk/node/136. Does not accept https://action.earthcharity.org.uk/my-action-name or https://action.earthcharity.org.uk/node/136/polling (with /polling on the end)
 
@@ -77,12 +76,16 @@ export const GET: APIRoute = async ({ url }) => {
 	// This checks if the colour provided is a hexcode without the #
 	// If it is, it adds the # to the start of the string
 	// If it isn't, it sets bg to the default colour
+
+
+
 	const colours = colorsSchema.parse({
 		bg: searchParams.get('bg'),
 		barBg: searchParams.get('bar_bg'),
 		bar: searchParams.get('bar'),
 		text: searchParams.get('text_colour')
 	});
+
 
 	const actionURL = searchParams.get("url");
 

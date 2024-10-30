@@ -56,11 +56,25 @@ const colorsSchema = z.object({
 });
 
 
+const widthSchema = z.coerce
+	.number()
+	.min(1)
+	.catch(300); // Default width
+
+const heightSchema = z.coerce
+	.number()
+	.min(1)
+	.catch(169); // Default height
+
 export const GET: APIRoute = async ({ url }) => {
 
 	const searchParams = url.searchParams;
 
 	// url is for the action URL. Accepts an Impact Stack node URL such as https://action.earthcharity.org.uk/node/136. Does not accept https://action.earthcharity.org.uk/my-action-name or https://action.earthcharity.org.uk/node/136/polling (with /polling on the end)
+
+	// width is for the width of the image. Accepts a number. Default is 300.
+
+	// height is for the height of the image. Accepts a number. Default is 169.
 
 	// bg is for the background of the whole image. Accepts a hex colour code without the #. Default is transparent.
 
@@ -71,7 +85,6 @@ export const GET: APIRoute = async ({ url }) => {
 	// text_colour is for the text. Accepts a hex colour code without the #. Default is black.
 
 	// text is for the text. Accepts an encoded URL string. You can use {total}, {needed} and {target} placeholders to display the corresponding values. Default is `${submissions.total} people have taken action so far. We need ${submissions.needed} more to reach ${submissions.target}.`
-
 
 	// This checks if the colour provided is a hexcode without the #
 	// If it is, it adds the # to the start of the string
@@ -86,6 +99,10 @@ export const GET: APIRoute = async ({ url }) => {
 		text: searchParams.get('text_colour')
 	});
 
+	const dimensions = {
+		height: heightSchema.parse(searchParams.get('height')),
+		width: widthSchema.parse(searchParams.get('width'))
+	};
 
 	const actionURL = searchParams.get("url");
 
@@ -127,7 +144,7 @@ export const GET: APIRoute = async ({ url }) => {
 		submissions.target = calculateTarget(submissions.total);
 		submissions.needed = submissions.target - submissions.total;
 		submissions.percentage = Math.round((submissions.total / submissions.target) * 100);
-		console.log("submissions: ", submissions);
+
 	} catch (error) {
 		return new Response(
 			`Failed to fetch polling data for ${actionURL}. Check that the URL is correct`,
@@ -168,8 +185,8 @@ export const GET: APIRoute = async ({ url }) => {
 
 	try {
 		const satoriOptions: SatoriOptions = {
-			width: 300,
-			height: 130,
+			width: dimensions.width,
+			height: dimensions.width,
 			debug: false,
 			fonts: [
 				{

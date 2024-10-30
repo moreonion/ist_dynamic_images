@@ -125,12 +125,10 @@ export const GET: APIRoute = async ({ url }) => {
 		text: searchParams.get('text_colour')
 	});
 
-
-
 	const fontFamily = fontFamilySchema.parse(searchParams.get('font'));
 	const fontStyle = fontStyleSchema.parse(searchParams.get('weight'));
 	const fontWeight = fontWeights[fontStyle];
-	const fontFile = readFileSync(fonts[fontFamily][fontStyle]);
+	const fontFile = readFileSync(`${process.cwd()}${fonts[fontFamily][fontStyle]}`);
 
 	const typography = {
 		fontFamily,

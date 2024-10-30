@@ -1,39 +1,39 @@
 export const fonts = {
     'crimson-text': {
-        normal: './public/fonts/crimson-text/crimson-text-latin-400-normal.ttf'
+        normal: '/public/fonts/crimson-text/crimson-text-latin-400-normal.ttf'
     },
     'ibm-plex-sans': {
-        normal: './public/fonts/ibm-plex-sans/ibm-plex-sans-latin-ext-400-normal.ttf'
+        normal: '/public/fonts/ibm-plex-sans/ibm-plex-sans-latin-ext-400-normal.ttf'
     },
     'inter': {
-        normal: './public/fonts/inter/inter-latin-400-normal.ttf'
+        normal: '/public/fonts/inter/inter-latin-400-normal.ttf'
     },
     'lora': {
-        normal: './public/fonts/lora/lora-latin-400-normal.ttf'
+        normal: '/public/fonts/lora/lora-latin-400-normal.ttf'
     },
     'merriweather': {
-        normal: './public/fonts/merriweather/merriweather-latin-400-normal.ttf'
+        normal: '/public/fonts/merriweather/merriweather-latin-400-normal.ttf'
     },
     'nunito-sans': {
-        normal: './public/fonts/nunito-sans/nunito-sans-latin-400-normal.ttf'
+        normal: '/public/fonts/nunito-sans/nunito-sans-latin-400-normal.ttf'
     },
     'open-sans': {
-        normal: './public/fonts/open-sans/open-sans-latin-400-normal.ttf'
+        normal: '/public/fonts/open-sans/open-sans-latin-400-normal.ttf'
     },
     'pt-serif': {
-        normal: './public/fonts/pt-serif/pt-serif-latin-400-normal.ttf'
+        normal: '/public/fonts/pt-serif/pt-serif-latin-400-normal.ttf'
     },
     'roboto': {
-        normal: './public/fonts/roboto/roboto-latin-ext-400-normal.ttf'
+        normal: '/public/fonts/roboto/roboto-latin-ext-400-normal.ttf'
     },
     'source-sans-pro': {
-        normal: './public/fonts/source-sans-pro/source-sans-pro-latin-400-normal.ttf'
+        normal: '/public/fonts/source-sans-pro/source-sans-pro-latin-400-normal.ttf'
     },
     'source-serif-pro': {
-        normal: './public/fonts/source-serif-pro/source-serif-pro-latin-400-normal.ttf'
+        normal: '/public/fonts/source-serif-pro/source-serif-pro-latin-400-normal.ttf'
     },
     'work-sans': {
-        normal: './public/fonts/work-sans/work-sans-latin-400-normal.ttf'
+        normal: '/public/fonts/work-sans/work-sans-latin-400-normal.ttf'
     }
 } as const;
 

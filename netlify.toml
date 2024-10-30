@@ -1,0 +1,2 @@
+[functions]
+included_files = ["public/fonts/**/*.ttf"] # Bundle all fonts in the public/fonts directory

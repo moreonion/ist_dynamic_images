@@ -49,10 +49,10 @@ import satori, { type SatoriOptions } from "satori";
 import { html } from "satori-html";
 import { Resvg, type ResvgRenderOptions } from "@resvg/resvg-js";
 import { z } from "zod";
-import { readFileSync } from "node:fs";
+import { readFile } from 'node:fs/promises';
 import type { APIRoute } from "astro";
 import { calculateTarget } from "../utils/calculateTarget";
-import { fonts, fontWeights, getAllAvailableFontFamilies, getAllAvailableStyles } from "../utils/fonts";
+import { fonts, fontWeights, getAllAvailableFontFamilies, getAllAvailableStyles, getFontPath } from "../utils/fonts";
 
 // A url query parameter must be provided. It must be a valid URL ending in /node/ followed by a number, eg `https://action.earthcharity.org.uk/node/123`
 const URLSchema = z
@@ -128,7 +128,9 @@ export const GET: APIRoute = async ({ url }) => {
 	const fontFamily = fontFamilySchema.parse(searchParams.get('font'));
 	const fontStyle = fontStyleSchema.parse(searchParams.get('weight'));
 	const fontWeight = fontWeights[fontStyle];
-	const fontFile = readFileSync(`${process.cwd()}${fonts[fontFamily][fontStyle]}`);
+	const fontPath = getFontPath(fonts[fontFamily][fontStyle]);
+	const fontFile = await readFile(fontPath);
+
 
 	const typography = {
 		fontFamily,

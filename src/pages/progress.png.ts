@@ -173,20 +173,24 @@ export const GET: APIRoute = async ({ url }) => {
 
 
 	const markup = html(`
-  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; background-color: ${colours.bg};">
-  <div style="display: flex; width: 95%; height: 48px; border-radius: 8px; background-color: ${colours.barBg};">
-  <div style="display: flex; width: ${submissions.percentage}%; margin: 4px; border-radius: 4px; background-color: ${colours.bar};"></div>
-  </div>
-   <div style="display: flex; margin: 0 4px; color: ${colours.text};">
-	<p>${text}</p>
-  </div>
+<div
+style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; background-color: ${colours.bg};"
+>
+	<div
+	style="display: flex; width: 95%; height: 48px; border-radius: 8px; background-color: ${colours.barBg};">
+		<div
+			style="display: flex; width: ${submissions.percentage}%; margin: 4px; border-radius: 4px; background-color: ${colours.bar};"></div>
+		</div>
+	<div style="display: flex; margin: 0 4px; color: ${colours.text};">
+		<p>${text}</p>
+	</div>
 </div>
   `);
 
 	try {
 		const satoriOptions: SatoriOptions = {
 			width: dimensions.width,
-			height: dimensions.width,
+			height: dimensions.height,
 			debug: false,
 			fonts: [
 				{

@@ -123,10 +123,10 @@ const fontStyleSchema = z.enum(allAvailableStyles)
 	.default('normal');
 
 
-// If a format query parameter is provided, it must be either png or svg. Default is svg.
+// If a format query parameter is provided, it must be either png or svg. Default is png.
 const formatSchema = z.enum(['png', 'svg'])
-	.catch('svg')
-	.default('svg');
+	.catch('png')
+	.default('png');
 
 
 export const GET: APIRoute = async ({ url }) => {
@@ -278,10 +278,14 @@ style="display: flex; flex-direction: column; align-items: center; justify-conte
 					'Netlify-CDN-Cache-Control': 'public, durable, s-maxage=3600, stale-while-revalidate=86400'
 				}
 			});
-		} else if (format === 'png') {
+		} else {
 
 			const resvgOptions: ResvgRenderOptions = {
 				background: "transparent",
+				fitTo: {
+					mode: 'width',
+					value: dimensions.width
+				},
 
 				// font: {
 				// 	fontFiles: ['./public/fonts/Raleway-Regular.ttf'], // Load custom fonts.

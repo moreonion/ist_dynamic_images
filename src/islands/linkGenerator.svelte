@@ -35,8 +35,9 @@
 	});
 
 	// Debounced URL for the image
-	let lastPromise;
-	let lastValue = "";
+	// Define a type for the Promise to handle string URLs
+	let lastPromise: Promise<string> | null = null;
+	let lastValue: string = "";
 
 	let debouncedUrl = $derived.by(() => {
 		// If the URL hasn't changed, return the existing promise
@@ -47,8 +48,8 @@
 		// Store the current value
 		lastValue = generatedUrl;
 
-		// Create a new promise
-		lastPromise = new Promise((resolve) => {
+		// Create a new promise with explicit string type
+		lastPromise = new Promise<string>((resolve) => {
 			setTimeout(() => {
 				// Resolve with the most recent URL at the time of resolution
 				resolve(generatedUrl);

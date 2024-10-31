@@ -4,23 +4,23 @@
 // Some test URLs
 
 // Plain
-// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/136
+// http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2
 
 // A different URL
-// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/116
+// http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/283
 
 // With colours
-// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/136&bg=f8fafc&bar=FF5F00&bar_bg=CDCFD0&text_colour=191919
+// http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2&bg=f8fafc&bar=FF5F00&bar_bg=CDCFD0&text_colour=191919
 
 
 // Different font
-// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/136&font=merriweather
-// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/136&font=open-sans
+// http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2&font=merriweather
+// http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2&font=open-sans
 
 // Says supporters instead of default
 // Total%20is%20%7Btotal%7D.%20Needed%20is%20%7Bneeded%7D.%20Target%20is%20%7Btarget%7D.
 // Total is {total}. Needed is {needed}. Target is {target}.
-// http://localhost:4321/progress?url=https://act.youngminds.org.uk/node/116&text=Total%20is%20%7Btotal%7D.%20Needed%20is%20%7Bneeded%7D.%20Target%20is%20%7Btarget%7D.
+// http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/283&text=Total%20is%20%7Btotal%7D.%20Needed%20is%20%7Bneeded%7D.%20Target%20is%20%7Btarget%7D.
 
 // URL params
 // url is for the action URL. Accepts an Impact Stack node URL such as https://action.earthcharity.org.uk/node/136. Does not accept https://action.earthcharity.org.uk/my-action-name or https://action.earthcharity.org.uk/node/136/polling (with /polling on the end)

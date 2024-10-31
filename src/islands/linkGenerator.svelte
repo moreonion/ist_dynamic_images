@@ -4,7 +4,7 @@
 	import { getAllAvailableFontFamilies } from "../utils/fonts";
 
 	let formData = $state({
-		url: "https://act.youngminds.org.uk/node/136",
+		url: "https://demo2.impact-stack.org/node/2",
 		width: "",
 		height: "",
 		bg: "",
@@ -78,7 +78,7 @@
 			name="url"
 			id="url"
 			bind:value={formData.url}
-			placeholder="https://act.youngminds.org.uk/node/136"
+			placeholder="https://demo2.impact-stack.org/node/2"
 			class="w-full p-2 border rounded"
 		/>
 	</div>

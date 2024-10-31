@@ -15,7 +15,6 @@
 // http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2&bg=f8fafc&bar=FF5F00&bar_bg=CDCFD0&text_colour=191919
 // https://ist-stats-live-images.netlify.app/progress?url=https://demo2.impact-stack.org/node/2&bg=f8fafc&bar=FF5F00&bar_bg=CDCFD0&text_colour=191919
 
-
 // Different font
 // http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2&font=merriweather
 // http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2&font=open-sans
@@ -28,6 +27,9 @@
 // http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/283&text=Total%20is%20%7Btotal%7D.%20Needed%20is%20%7Bneeded%7D.%20Target%20is%20%7Btarget%7D.
 // https://ist-stats-live-images.netlify.app/progress?url=https://demo2.impact-stack.org/node/283&text=Total%20is%20%7Btotal%7D.%20Needed%20is%20%7Bneeded%7D.%20Target%20is%20%7Btarget%7D.
 
+// Use SVG
+// http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2?format=svg
+// https://ist-stats-live-images.netlify.app/progress?url=https://demo2.impact-stack.org/node/2?format=svg
 
 
 // URL params

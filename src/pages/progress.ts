@@ -50,9 +50,6 @@
 		src="https:ist-stats-live-images.netlify.app/progress?url=https:act.youngminds.org.uk/node/136&font=lora" />
 </div>
 
-<div style="text-align: center; background-color: black;">
-	<img class="mcnImage" src="https:svgshare.com/i/1C48.svg" />
-</div>
  */
 
 
@@ -123,7 +120,7 @@ const fontStyleSchema = z.enum(allAvailableStyles)
 	.default('normal');
 
 
-// If a format query parameter is provided, it must be either png or svg. Default is png.
+// If a format query parameter is provided, it must be either png or svg. Default is png. Text with SVG is crisper but not widely supported in email or social images.
 const formatSchema = z.enum(['png', 'svg'])
 	.catch('png')
 	.default('png');

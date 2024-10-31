@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LinkGenerator from "../islands/linkGenerator.svelte";
+---
+
+<Layout>
+	<LinkGenerator
+		client:load
+		origin={Astro.url.origin}
+	/>
+</Layout>

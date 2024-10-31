@@ -5,22 +5,30 @@
 
 // Plain
 // http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2
+// https://ist-stats-live-images.netlify.app/progress?url=https://demo2.impact-stack.org/node/2
 
 // A different URL
 // http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/283
+// https://ist-stats-live-images.netlify.app/progress?url=https://demo2.impact-stack.org/node/283
 
 // With colours
 // http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2&bg=f8fafc&bar=FF5F00&bar_bg=CDCFD0&text_colour=191919
+// https://ist-stats-live-images.netlify.app/progress?url=https://demo2.impact-stack.org/node/2&bg=f8fafc&bar=FF5F00&bar_bg=CDCFD0&text_colour=191919
 
 
 // Different font
 // http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2&font=merriweather
 // http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/2&font=open-sans
+// https://ist-stats-live-images.netlify.app/progress?url=https://demo2.impact-stack.org/node/2&font=merriweather
+// https://ist-stats-live-images.netlify.app/progress?url=https://demo2.impact-stack.org/node/2&font=open-sans
 
 // Says supporters instead of default
 // Total%20is%20%7Btotal%7D.%20Needed%20is%20%7Bneeded%7D.%20Target%20is%20%7Btarget%7D.
 // Total is {total}. Needed is {needed}. Target is {target}.
 // http://localhost:4321/progress?url=https://demo2.impact-stack.org/node/283&text=Total%20is%20%7Btotal%7D.%20Needed%20is%20%7Bneeded%7D.%20Target%20is%20%7Btarget%7D.
+// https://ist-stats-live-images.netlify.app/progress?url=https://demo2.impact-stack.org/node/283&text=Total%20is%20%7Btotal%7D.%20Needed%20is%20%7Bneeded%7D.%20Target%20is%20%7Btarget%7D.
+
+
 
 // URL params
 // url is for the action URL. Accepts an Impact Stack node URL such as https://action.earthcharity.org.uk/node/136. Does not accept https://action.earthcharity.org.uk/my-action-name or https://action.earthcharity.org.uk/node/136/polling (with /polling on the end)
@@ -201,7 +209,7 @@ export const GET: APIRoute = async ({ url }) => {
 		submissions.total = actionData?.pgbar?.pgbar_default?.[0] || 0;
 		submissions.target = calculateTarget(submissions.total);
 		submissions.needed = submissions.target - submissions.total;
-		submissions.percentage = Math.round((submissions.total / submissions.target) * 100);
+		submissions.percentage = Math.max(10, Math.round((submissions.total / submissions.target) * 100));
 
 	} catch (error) {
 		return new Response(

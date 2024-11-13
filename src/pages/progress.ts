@@ -227,16 +227,25 @@ export const GET: APIRoute = async ({ url }) => {
 
 
 	if (encodedText !== null) {
-		// Decode the URL-encoded text
-		const templateText = decodeURIComponent(encodedText);
+		try {
+			// Decode the URL-encoded text
+			const templateText = decodeURIComponent(encodedText);
 
-		// Replace placeholders with actual values
-		text = templateText.replace(/\{(\w+)\}/g, (match, key: keyof Submissions) => {
-			return submissions[key]?.toString() ?? match;
-		});
+			// Replace placeholders with actual values
+			text = templateText.replace(/\{(\w+)\}/g, (match, key: keyof Submissions) => {
+				return submissions[key]?.toString() ?? match;
+			});
+		} catch (error) {
+			// If we get a URI malformed error, try handling % specially
+			const safeText = encodedText.replace(/%(?![0-9A-Fa-f]{2})/g, '%25');
+			const templateText = decodeURIComponent(safeText);
+
+			// Replace placeholders with actual values
+			text = templateText.replace(/\{(\w+)\}/g, (match, key: keyof Submissions) => {
+				return submissions[key]?.toString() ?? match;
+			});
+		}
 	}
-
-
 
 
 	const markup = html(`

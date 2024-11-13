@@ -1,2 +1,2 @@
 [functions]
-included_files = ["public/fonts/**/*.ttf"] # Bundle all fonts in the public/fonts directory
+included_files = ["public/fonts/**/*.ttf"] # Bundle all fonts in the public/fonts directory so they're available to the functions

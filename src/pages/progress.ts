@@ -49,7 +49,7 @@
 
 // text is for the text. Accepts an encoded URL string. You can use {total}, {needed} and {target} placeholders to display the corresponding values. Default is `${submissions.total} people have taken action so far. We need ${submissions.needed} more to reach ${submissions.target}.`
 
-// font is for the font. Accepts a one of these Google Fonts: crimson-text, ibm-plex-sans, inter, lora, merriweather, nunito-sans, open-sans, pt-serif, roboto, source-sans-pro, source-serif-pro, work-sans. Default is inter.
+// font is for the font family. Accepts one of these Google Fonts: crimson-text, ibm-plex-sans, inter, lora, merriweather, nunito-sans, open-sans, pt-serif, roboto, source-sans-pro, source-serif-pro, work-sans. Default is inter.
 
 // weight is for the font weight. Only accepts normal at the moment. Default is normal.
 

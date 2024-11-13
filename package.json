@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/netlify": "^5.5.4",
-    "@astrojs/svelte": "^5.7.2",
+    "@astrojs/svelte": "^5.7.3",
     "@astrojs/tailwind": "^5.1.2",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/forms": "^0.5.9",
@@ -25,7 +25,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "@sveltejs/vite-plugin-svelte": "^4.0.0-next.6",
     "@types/node": "^22.8.4"
   },
   "overrides": {

@@ -15,8 +15,8 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4(@types/node@22.8.4)(astro@4.16.7(@types/node@22.8.4)(rollup@4.24.3)(typescript@5.6.3))
       '@astrojs/svelte':
-        specifier: ^5.7.2
-        version: 5.7.2(astro@4.16.7(@types/node@22.8.4)(rollup@4.24.3)(typescript@5.6.3))(svelte@5.1.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.4))
+        specifier: ^5.7.3
+        version: 5.7.3(astro@4.16.7(@types/node@22.8.4)(rollup@4.24.3)(typescript@5.6.3))(svelte@5.1.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.4))
       '@astrojs/tailwind':
         specifier: ^5.1.2
         version: 5.1.2(astro@4.16.7(@types/node@22.8.4)(rollup@4.24.3)(typescript@5.6.3))(tailwindcss@3.4.14)
@@ -101,8 +101,8 @@ packages:
     resolution: {integrity: sha512-Z9IYjuXSArkAUx3N6xj6+Bnvx8OdUSHA8YoOgyepp3+zJmtVYJIl/I18GozdJVW1p5u/CNpl3Km7/gwTJK85cw==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
 
-  '@astrojs/svelte@5.7.2':
-    resolution: {integrity: sha512-d3nfPe7OMoDqdw7SXfvYlyCSB4p84p92IIvEsu5E1jDPFbS1mlC76hjAlr0nJHQfV1MZPWifEmmfgDBWLCuS8g==}
+  '@astrojs/svelte@5.7.3':
+    resolution: {integrity: sha512-0PAwn2KLVpGsJppG8dWM1P9+/VrjAdhMWgEgwC1PjY2xFG565bTw7OuGaS5zh5Fu4AcjVoBkVQKjW/N3mLnrJA==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
     peerDependencies:
       astro: ^4.0.0
@@ -2689,7 +2689,7 @@ snapshots:
     dependencies:
       prismjs: 1.29.0
 
-  '@astrojs/svelte@5.7.2(astro@4.16.7(@types/node@22.8.4)(rollup@4.24.3)(typescript@5.6.3))(svelte@5.1.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.4))':
+  '@astrojs/svelte@5.7.3(astro@4.16.7(@types/node@22.8.4)(rollup@4.24.3)(typescript@5.6.3))(svelte@5.1.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.4))':
     dependencies:
       '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@5.1.6)(vite@5.4.10(@types/node@22.8.4))
       astro: 4.16.7(@types/node@22.8.4)(rollup@4.24.3)(typescript@5.6.3)
